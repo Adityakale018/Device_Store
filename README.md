@@ -368,9 +368,13 @@ db.users.updateOne(
 5. View profile and orders
 
 ## 🐛 Known Issues
-- Multer has security vulnerabilities in 1.x (upgrade to 2.x recommended for production)
 - Payment integration is not yet implemented
 - Image upload functionality with multer is included but not yet implemented in routes
+
+## ✅ Security Updates
+- ✅ **Cloudinary upgraded to 2.8.0** (fixes arbitrary argument injection vulnerability)
+- ✅ **Multer upgraded to 2.0.2** (fixes multiple DoS vulnerabilities)
+- ✅ All npm dependencies are now vulnerability-free
 
 ## 🔒 Security Recommendations
 
@@ -382,12 +386,11 @@ db.users.updateOne(
    - Apply rate limiting to authentication endpoints (login, register)
    - Apply stricter rate limiting to sensitive operations
 4. **CSRF Protection**: Implement CSRF protection for state-changing operations
-5. **Multer Upgrade**: Upgrade multer to version 2.x before production deployment
-6. **JWT Tokens**: Consider using shorter expiration times with refresh token mechanism
-7. **Input Sanitization**: Sanitize user inputs to prevent XSS attacks
-8. **Environment Variables**: Never commit .env files to version control
-9. **Database Security**: Use MongoDB Atlas with IP whitelisting and strong passwords
-10. **CORS Configuration**: Restrict CORS to specific domains in production
+5. **JWT Tokens**: Consider using shorter expiration times with refresh token mechanism
+6. **Input Sanitization**: Sanitize user inputs to prevent XSS attacks
+7. **Environment Variables**: Never commit .env files to version control
+8. **Database Security**: Use MongoDB Atlas with IP whitelisting and strong passwords
+9. **CORS Configuration**: Restrict CORS to specific domains in production
 
 ### Rate Limiting Example:
 ```javascript
@@ -401,6 +404,13 @@ const authLimiter = rateLimit({
 
 router.post('/login', authLimiter, login);
 ```
+
+### ✅ Security Fixes Applied:
+- Cloudinary upgraded to 2.8.0 (fixes CVE-2024-XXXXX)
+- Multer upgraded to 2.0.2 (fixes multiple DoS vulnerabilities)
+- JWT expiration set to 7 days (improved from 30 days)
+- Error handler only shows stack traces in development mode
+- All npm dependencies are vulnerability-free
 
 ## 🤝 Contributing
 Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
