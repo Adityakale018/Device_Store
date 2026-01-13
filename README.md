@@ -368,8 +368,18 @@ db.users.updateOne(
 5. View profile and orders
 
 ## 🐛 Known Issues
-- Multer has security vulnerabilities in 1.x (upgrade to 2.x recommended)
+- Multer has security vulnerabilities in 1.x (upgrade to 2.x recommended for production)
 - Payment integration is not yet implemented
+- Image upload functionality with multer is included but not yet implemented in routes
+
+## 🔒 Security Recommendations
+1. Change JWT_SECRET to a strong random string in production
+2. Use HTTPS in production
+3. Enable rate limiting for API endpoints
+4. Implement CSRF protection
+5. Upgrade multer to version 2.x before production deployment
+6. Use shorter JWT expiration times with refresh token mechanism
+7. Sanitize user inputs to prevent XSS attacks
 
 ## 🤝 Contributing
 Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
