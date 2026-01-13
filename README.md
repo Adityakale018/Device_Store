@@ -373,13 +373,34 @@ db.users.updateOne(
 - Image upload functionality with multer is included but not yet implemented in routes
 
 ## 🔒 Security Recommendations
-1. Change JWT_SECRET to a strong random string in production
-2. Use HTTPS in production
-3. Enable rate limiting for API endpoints
-4. Implement CSRF protection
-5. Upgrade multer to version 2.x before production deployment
-6. Use shorter JWT expiration times with refresh token mechanism
-7. Sanitize user inputs to prevent XSS attacks
+
+### For Production Deployment:
+1. **JWT Secret**: Change JWT_SECRET to a strong random string (use `openssl rand -base64 32`)
+2. **HTTPS**: Always use HTTPS in production
+3. **Rate Limiting**: Implement rate limiting for API endpoints to prevent abuse
+   - Install `express-rate-limit` package
+   - Apply rate limiting to authentication endpoints (login, register)
+   - Apply stricter rate limiting to sensitive operations
+4. **CSRF Protection**: Implement CSRF protection for state-changing operations
+5. **Multer Upgrade**: Upgrade multer to version 2.x before production deployment
+6. **JWT Tokens**: Consider using shorter expiration times with refresh token mechanism
+7. **Input Sanitization**: Sanitize user inputs to prevent XSS attacks
+8. **Environment Variables**: Never commit .env files to version control
+9. **Database Security**: Use MongoDB Atlas with IP whitelisting and strong passwords
+10. **CORS Configuration**: Restrict CORS to specific domains in production
+
+### Rate Limiting Example:
+```javascript
+import rateLimit from 'express-rate-limit';
+
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // 5 requests per windowMs
+  message: 'Too many login attempts, please try again later'
+});
+
+router.post('/login', authLimiter, login);
+```
 
 ## 🤝 Contributing
 Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
