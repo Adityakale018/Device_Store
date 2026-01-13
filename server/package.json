@@ -1,0 +1,29 @@
+{
+  "name": "device-store-server",
+  "version": "1.0.0",
+  "description": "Backend server for Device Store MERN application",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "mern",
+    "ecommerce",
+    "device-store"
+  ],
+  "author": "Aditya Kale",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3",
+    "multer": "^2.0.2"
+  }
+}
